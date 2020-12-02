@@ -16,3 +16,6 @@ io.on('error', (error) => this._onError(error));
 app.get('/', (req, res) => {
 	res.sendFile(__dirname+'/index.html');
 });
+app.get('/DACH.png', (req, res) => {
+	res.sendFile(__dirname+'/DACH.png');
+});

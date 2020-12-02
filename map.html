@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<img id="map" width="1328" height="1462" src="DACH.png" alt="The Scream">
+<img id="map" width="1328" height="1462" src="./DACH.png" alt="The Scream">
 <h3 style="text-align: center">Wo bist du gerade?</h3>
 <p style="text-align: center">Klicke bitte auf der Karte, wo du dich gerade befindest. Beim erneuten Klicken wird dein Punkt neu positioniert.</p>
 <canvas id="myCanvas" width="1338" height="1472" style="border:1px solid #d3d3d3; display: block; margin-left: auto; margin-right: auto">
@@ -16,8 +16,8 @@ window.onload = function() {
   var img = document.getElementById("map");
   ctx.drawImage(img, 5, 5);
   img.style.display = "none";
-  
-  function onMouseClick(e) {	
+
+  function onMouseClick(e) {
 		ctx.beginPath();
 		ctx.fillStyle = "rgba(0, 0, 200, 0.3)";
 		const rect = c.getBoundingClientRect()
@@ -26,9 +26,9 @@ window.onload = function() {
 		ctx.arc(x, y, 4, 0, Math.PI * 2, false);
 		ctx.fill();
 	}
-  
+
   document.addEventListener("click", onMouseClick, false);
-  
+
 }
 </script>
 
