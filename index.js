@@ -42,8 +42,8 @@ function sendLocationsToClients(){
 app.get('/', (req, res) => {
 	res.sendFile(__dirname+'/index.html');
 });
-app.get('/DACH.png', (req, res) => {
-	res.sendFile(__dirname+'/DACH.png');
+app.get('/map.jpg', (req, res) => {
+	res.sendFile(__dirname+'/map.jpg');
 });
 
 app.use(express.static(__dirname+'/node_modules/socket.io/client-dist/'))
