@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<body>
+
+<img id="map" width="1887" height="1462" src="./map.jpg" alt="map" style="display: none">
+<h3 style="text-align: center">Where are you right now?</h3>
+<p style="text-align: center">Please click on the map where you are. When you click again, your point will be repositioned.</p>
+<canvas id="myCanvas" width="1897" height="1472" style="border:1px solid #d3d3d3; display: block; margin-left: auto; margin-right: auto; cursor: crosshair">
+	Your browser does not support canvas elements. Please use a more modern browser.
+</canvas>
+
+<script src="socket.io.min.js"  type="text/javascript"></script>
+<script>
+window.onload = function() {
+	var socket = io();
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  var img = document.getElementById("map");
+  ctx.drawImage(img, 5, 5);
+
+	socket.on('locations', locations => {
+	  ctx.drawImage(img, 5, 5);
+		ctx.fillStyle = "rgba(200, 000, 200, 0.3)";
+		locations.forEach(l => drawLocation(l));
+	});
+
+	function drawLocation(l) {
+		ctx.beginPath();
+		ctx.arc(l.x, l.y, 5, 0, Math.PI * 2, false);
+		ctx.fill();
+	}
+
+  function onMouseClick(e) {
+		const rect = c.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+		socket.emit('new location', {x: x, y: y});
+	}
+
+  document.addEventListener("click", onMouseClick, false);
+
+}
+</script>
+
+</body>
+</html>

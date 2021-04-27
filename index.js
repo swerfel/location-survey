@@ -40,10 +40,12 @@ function sendLocationsToClients(){
 
 // Frontend logic
 app.get('/', (req, res) => {
-	res.sendFile(__dirname+'/index.html');
+	res.sendFile(__dirname+'/index_eng.html');
+	// res.sendFile(__dirname+'/index_ger.html');
 });
 app.get('/map.jpg', (req, res) => {
-	res.sendFile(__dirname+'/map.jpg');
+	res.sendFile(__dirname+'/map_world.jpg');
+	// es.sendFile(__dirname+'/map_DACH.jpg');
 });
 
 app.use(express.static(__dirname+'/node_modules/socket.io/client-dist/'))
