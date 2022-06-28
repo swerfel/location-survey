@@ -20,7 +20,7 @@ window.onload = function() {
 
 	socket.on('locations', locations => {
 	  ctx.drawImage(img, 5, 5);
-		ctx.fillStyle = "rgba(200, 0, 200, 0.3)";
+		ctx.fillStyle = "rgba(250, 250, 0, 0.3)";
 		locations.forEach(l => drawLocation(l));
 	});
 
