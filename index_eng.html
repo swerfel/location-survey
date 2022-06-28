@@ -19,18 +19,22 @@ window.onload = function() {
   ctx.drawImage(img, 5, 5);
 
 	socket.on('locations', locations => {
-	  ctx.drawImage(img, 5, 5);
-		ctx.fillStyle = "rgba(200, 000, 200, 0.3)";
+	  	ctx.drawImage(img, 5, 5);
 		locations.forEach(l => drawLocation(l));
 	});
 
 	function drawLocation(l) {
-		ctx.beginPath();
-		ctx.arc(l.x, l.y, 5, 0, Math.PI * 2, false);
-		ctx.fill();
+		var r = 5;
+
+		var grd = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, r);
+		grd.addColorStop(0, "rgba(0, 0, 255, 0.6)");
+		grd.addColorStop(1, "rgba(0, 0, 255, 0.0)");
+
+		ctx.fillStyle = grd;
+		ctx.fillRect(l.x-r, l.y-r, r*2, r*2);
 	}
 
-  function onMouseClick(e) {
+  	function onMouseClick(e) {
 		const rect = c.getBoundingClientRect();
 		const x = e.clientX - rect.left;
 		const y = e.clientY - rect.top;
